@@ -1,0 +1,94 @@
+{% block data_grid_above_filter %}
+{% endblock %}
+{% block data_grid_filter %}
+    {% if dataGrid.filterFormView %}
+        {% if not dataGrid.filterAlwaysVisible|length %}
+            {% if dataGrid.filterFormView.hideFilters.vars.value %}
+                {% set filterClass = 'hidden' %}
+            {% endif %}
+            <div>
+                <div>
+                    <a href="#" id="filtersToggleButton">
+                        {% if dataGrid.priorityFilters|length %}
+                            {{ 'Show other filters'|trans }}
+                        {% else %}
+                            {{ 'Show filters'|trans }}
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        {{ form_start(dataGrid.filterFormView, {'method':'get', 'attr': {'id':'dataGridFilter'}}) }}
+            {% if dataGrid.priorityFilters|length %}
+                {% block data_grid_priority_filter_form %}
+                    {% for priorityFilter in dataGrid.priorityFilters %}
+                        {{ form_row(dataGrid.filterFormView[priorityFilter]) }}
+                    {% endfor %}
+                {% endblock %}
+            {% endif %}
+            <div id="filters">
+                {% block data_grid_filter_form %}
+                    {{ form_rest(dataGrid.filterFormView) }}
+                {% endblock %}
+                {% if dataGrid.priorityFilters|length == 0 %}
+                    <div>
+                        <div>
+                            <button type="submit">{{ 'Filter'|trans }}</button>
+                        </div>
+                        <div>
+                            <button type="reset">{{ 'Reset'|trans }}</button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% if dataGrid.options['showLimit']|default %}
+                <div>
+                    <label>{{ 'On page'|trans }}</label>
+                        <select id="data-grid-limit-select" name="limit">
+                            {% for limitOption in  dataGrid.options['limitOptions']|default %}
+                                <option {% if dataGrid.options['currentLimit']|default == limitOption %} selected {% endif %} value="{{ limitOption }}">{{ limitOption }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+            {% endif %}
+        {{ form_end(dataGrid.filterFormView) }}
+    {% endif %}
+{% endblock %}
+
+{% block data_grid_above_table %}
+{% endblock %}
+{% block data_grid_table %}
+    <table class="data-grid-table" cellspacing="0" width="100%">
+        <thead>
+            {% block data_grid_header %}
+                {{ 'This is default content of header' }}
+            {% endblock %}
+        </thead>
+        <tbody>
+            {% block data_grid_content %}
+                {{ 'This is default content of grid' }}
+            {% endblock %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block data_grid_pagination %}
+    {% if dataGrid.pagination %}
+        <div class="row">
+            <div class="data-grid-pagination-details">
+                {{ 'Showing'|trans }}
+                    {{  dataGrid.pagination.getPaginationData.currentItemCount ? dataGrid.pagination.getPaginationData.firstItemNumber : 0 }}
+                {{ 'to'|trans }}
+                    {{  dataGrid.pagination.getPaginationData.currentItemCount ? dataGrid.pagination.getPaginationData.lastItemNumber : 0 }}
+                {{ 'of'|trans }}
+                    {{ dataGrid.pagination.getPaginationData.totalCount }}
+                {{ 'entries'|trans }}
+            </div>
+            <div>
+                <div class="data-grid-pagination">
+                    {{ knp_pagination_render(dataGrid.pagination) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
