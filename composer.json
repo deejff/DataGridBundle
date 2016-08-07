@@ -20,12 +20,6 @@
     "autoload": {
         "psr-4": { "Deejff\\DataGridBundle\\": "" }
     },
-    "autoload" : {
-        "psr-0" : {
-            "Deejff\\DataGridBundle" : ""
-        }
-    },
-    "target-dir" : "Company/DemoBundle",
     "repositories" : [{
     }],
     "extra" : {
