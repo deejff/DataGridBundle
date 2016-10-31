@@ -26,7 +26,6 @@ class DataGridBuilder
      */
     private $resultDataConverter;
     private $sortFieldWhiteList;
-    private $priorityFilters = [];
     private $defaultLimit;
     private $limitOptions = [
         10,
@@ -73,13 +72,6 @@ class DataGridBuilder
         return $this;
     }
 
-    public function setPriorityFilters(array $priorityFilters = [])
-    {
-        $this->priorityFilters = $priorityFilters;
-
-        return $this;
-    }
-
     /**
      * @param Request                     $request
      * @param QueryBuilder                $queryBuilder
@@ -101,8 +93,6 @@ class DataGridBuilder
 
         if ($filterForm && $filterQueryBuilder) {
             $form = $this->formFactory->create($filterForm);
-            $form->add('hideFilters', 'hidden', ['data' => 1]);
-
             $this->applyFilter($form, $request, $queryBuilder, $filterQueryBuilder);
         }
 
@@ -118,7 +108,7 @@ class DataGridBuilder
             $result = $this->resultDataConverter->convert($result);
         }
 
-        return new DataGrid($result, $pagination, $form, $this->priorityFilters, $options);
+        return new DataGrid($result, $pagination, $form, $options);
     }
 
     private function applyFilter(

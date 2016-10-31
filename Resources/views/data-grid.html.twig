@@ -2,35 +2,11 @@
 {% endblock %}
 {% block data_grid_filter %}
     {% if dataGrid.filterFormView %}
-        {% if not dataGrid.filterAlwaysVisible|length %}
-            {% if dataGrid.filterFormView.hideFilters.vars.value %}
-                {% set filterClass = 'hidden' %}
-            {% endif %}
-            <div>
-                <div>
-                    <a href="#" id="filtersToggleButton">
-                        {% if dataGrid.priorityFilters|length %}
-                            {{ 'Show other filters'|trans }}
-                        {% else %}
-                            {{ 'Show filters'|trans }}
-                        {% endif %}
-                    </a>
-                </div>
-            </div>
-        {% endif %}
         {{ form_start(dataGrid.filterFormView, {'method':'get', 'attr': {'id':'dataGridFilter'}}) }}
-            {% if dataGrid.priorityFilters|length %}
-                {% block data_grid_priority_filter_form %}
-                    {% for priorityFilter in dataGrid.priorityFilters %}
-                        {{ form_row(dataGrid.filterFormView[priorityFilter]) }}
-                    {% endfor %}
-                {% endblock %}
-            {% endif %}
             <div id="filters">
                 {% block data_grid_filter_form %}
                     {{ form_rest(dataGrid.filterFormView) }}
                 {% endblock %}
-                {% if dataGrid.priorityFilters|length == 0 %}
                     <div>
                         <div>
                             <button type="submit">{{ 'Filter'|trans }}</button>
@@ -39,12 +15,11 @@
                             <button type="reset">{{ 'Reset'|trans }}</button>
                         </div>
                     </div>
-                {% endif %}
             </div>
             {% if dataGrid.options['showLimit']|default %}
                 <div>
                     <label>{{ 'On page'|trans }}</label>
-                        <select id="data-grid-limit-select" name="limit">
+                        <select id="data-grid-limit-select" name="limit" onchange="this.form.submit()">
                             {% for limitOption in  dataGrid.options['limitOptions']|default %}
                                 <option {% if dataGrid.options['currentLimit']|default == limitOption %} selected {% endif %} value="{{ limitOption }}">{{ limitOption }}</option>
                             {% endfor %}
@@ -61,12 +36,12 @@
     <table class="data-grid-table" cellspacing="0" width="100%">
         <thead>
             {% block data_grid_header %}
-                {{ 'This is default content of header' }}
+                {{ 'This is default content of header'|trans }}
             {% endblock %}
         </thead>
         <tbody>
             {% block data_grid_content %}
-                {{ 'This is default content of grid' }}
+                {{ 'This is default content of grid'|trans }}
             {% endblock %}
         </tbody>
     </table>

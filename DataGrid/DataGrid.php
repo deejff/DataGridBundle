@@ -13,23 +13,18 @@ class DataGrid
     private $pagination;
     private $filterForm;
     private $filterFormView;
-    private $filterAlwaysVisible = false;
-
-    private $priorityFilters = [];
     private $options = [];
 
     public function __construct(
         $data,
         PaginationInterface $pagination,
         FormInterface $filterForm = null,
-        $priorityFilters = [],
         $options = []
     )
     {
         $this->data = $data;
         $this->pagination = $pagination;
         $this->filterForm = $filterForm;
-        $this->priorityFilters = $priorityFilters;
         $this->options = $options;
 
         if ($filterForm) {
@@ -67,34 +62,6 @@ class DataGrid
     public function getPagination()
     {
         return $this->pagination;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getFilterAlwaysVisible()
-    {
-        return $this->filterAlwaysVisible;
-    }
-
-    /**
-     * @param $filterAlwaysVisible
-     *
-     * @return $this
-     */
-    public function setFilterAlwaysVisible($filterAlwaysVisible)
-    {
-        $this->filterAlwaysVisible = $filterAlwaysVisible;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPriorityFilters()
-    {
-        return $this->priorityFilters;
     }
 
     /**
