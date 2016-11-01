@@ -75,7 +75,7 @@ class DataGridBuilder
     /**
      * @param Request                     $request
      * @param QueryBuilder                $queryBuilder
-     * @param FormTypeInterface           $filterForm
+     * @param FormInterface               $filterForm
      * @param FilterQueryBuilderInterface $filterQueryBuilder
      * @param array                       $options
      *
@@ -84,16 +84,12 @@ class DataGridBuilder
     public function build(
         Request $request,
         QueryBuilder $queryBuilder,
-        FormTypeInterface $filterForm = null,
+        FormInterface $filterForm = null,
         FilterQueryBuilderInterface $filterQueryBuilder = null,
         $options = []
     ) {
-
-        $form = null;
-
         if ($filterForm && $filterQueryBuilder) {
-            $form = $this->formFactory->create($filterForm);
-            $this->applyFilter($form, $request, $queryBuilder, $filterQueryBuilder);
+            $this->applyFilter($filterForm, $request, $queryBuilder, $filterQueryBuilder);
         }
 
         $query = $queryBuilder->getQuery();
@@ -108,7 +104,7 @@ class DataGridBuilder
             $result = $this->resultDataConverter->convert($result);
         }
 
-        return new DataGrid($result, $pagination, $form, $options);
+        return new DataGrid($result, $pagination, $filterForm, $options);
     }
 
     private function applyFilter(

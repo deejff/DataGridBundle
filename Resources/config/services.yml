@@ -6,6 +6,6 @@ services:
     deejff_data_grid.service.data_grid_builder:
         class: %deejff_data_grid.data_grid_builder.class%
         arguments:
-            - @form.factory
-            - @knp_paginator
+            - "@form.factory"
+            - "@knp_paginator"
             - %deejff_data_grid.limit_on_page%
