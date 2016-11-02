@@ -118,7 +118,7 @@ class FilterQueryBuilder implements FilterQueryBuilderInterface
 
 ######To create data grid in view you can use standard embed view DeejffDataGridBundle::data-grid.html.twig or use your own. Sorting links are created by knp_pagination_sortable helper
 
-``php
+```php
 {% embed "DeejffDataGridBundle::data-grid.html.twig" %}
     {% block data_grid_header %}
         <tr>
