@@ -1,6 +1,6 @@
 {
     "name" : "deejff/data-grid-bundle",
-    "description" : "Wrapper for KNP paginator",
+    "description" : "Wrapper for KnpPaginator. Helps create complete data grid with filters.",
     "type" : "symfony-bundle",
     "authors" : [{
         "name" : "Dawid Paszek",
