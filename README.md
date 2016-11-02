@@ -1,4 +1,4 @@
-##This is wrapper for KnpPaginator helps you create complete data grid with filters.
+##This wrapper for KnpPaginator helps you create complete data grid with filters.
 
 ######This bundle uses symfony form component to create filters.
 
@@ -118,6 +118,7 @@ class FilterQueryBuilder implements FilterQueryBuilderInterface
 
 ######To create data grid in view you can use standard embed view DeejffDataGridBundle::data-grid.html.twig or use your own. Sorting links are created by knp_pagination_sortable helper
 
+``php
 {% embed "DeejffDataGridBundle::data-grid.html.twig" %}
     {% block data_grid_header %}
         <tr>
@@ -138,4 +139,9 @@ class FilterQueryBuilder implements FilterQueryBuilderInterface
         {% endfor %}
     {% endblock %}
 {% endembed %}
+```
+
+######Please check example project <https://github.com/deejff/Sf3ExampleProject>
+
+
 
