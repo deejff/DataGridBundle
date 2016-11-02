@@ -2,6 +2,10 @@
 
 ######This bundle uses symfony form component to create filters.
 
+######Installation:
+- composer require deejff/data-grid-bundle
+- add Deejff\DataGridBundle\DeejffDataGridBundle() in AppKernel.php
+
 ######Example controller action:
 
 ```php
