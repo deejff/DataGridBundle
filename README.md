@@ -1,12 +1,12 @@
-##This wrapper for KnpPaginator helps you create complete data grid with filters.
+## This is wrapper for KnpPaginator. It helps you create a complete data grid with filters.
 
-######This bundle uses symfony form component to create filters.
+###### Bundle use symfony form component to create filters.
 
-######Installation:
+###### Installation:
 - composer require deejff/data-grid-bundle
 - add Deejff\DataGridBundle\DeejffDataGridBundle() in AppKernel.php
 
-######Example controller action:
+###### Example controller action:
 
 ```php
 public function indexAction(Request $request)
@@ -31,7 +31,7 @@ public function indexAction(Request $request)
 }
 ```
 
-######As you can see to create data grid with filter you have to pass also FilterType and FilterQueryBuilder. Filter type is a instance of symfony form eg.:
+###### As you can see to create data grid with filter you have to pass FilterType and FilterQueryBuilder. Filter type is an instance of symfony form eg.:
 
 ```php
 class FilterType extends AbstractType
@@ -95,7 +95,7 @@ class FilterType extends AbstractType
 }
 ```
 
-######The aim of FilterQueryBuilder is a modify query after submit filters. Your own query builder have to implement FilterQueryBuilderInterface eg:
+###### The aim of FilterQueryBuilder is to modify query after submitting filters. Your own query builder has to implement FilterQueryBuilderInterface eg:
 
 ```php
 class FilterQueryBuilder implements FilterQueryBuilderInterface
@@ -120,7 +120,7 @@ class FilterQueryBuilder implements FilterQueryBuilderInterface
 }
 ```
 
-######To create data grid in view you can use standard embed view DeejffDataGridBundle::data-grid.html.twig or use your own. Sorting links are created by knp_pagination_sortable helper
+###### To create data grid in view you can use standard embed view DeejffDataGridBundle::data-grid.html.twig or use your own. Sorting links are created by knp_pagination_sortable helper
 
 ```php
 {% embed "DeejffDataGridBundle::data-grid.html.twig" %}
@@ -145,7 +145,7 @@ class FilterQueryBuilder implements FilterQueryBuilderInterface
 {% endembed %}
 ```
 
-######Please check example project <https://github.com/deejff/Sf3ExampleProject>
+###### Please check example project <https://github.com/deejff/Sf3ExampleProject>
 
 
 
